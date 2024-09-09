@@ -186,7 +186,7 @@ def main(answer):
                 for i in string:
                     x+=1
                     if x%4==0:
-                        time.sleep(0.036)
+                        time.sleep(0.076)
                     if i in [')', ']']:
                         # pyautogui.typewrite(i)
                         time.sleep(0.008)
