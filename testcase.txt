@@ -1,0 +1,1839 @@
+1
+
+
+
+2
+
+
+
+3
+
+
+
+4
+
+
+
+5
+
+
+
+6
+
+
+
+7
+
+
+
+8
+
+
+        /**
+         * THIS SCRIPT REQUIRED FOR PREVENT FLICKERING IN SOME BROWSERS
+         */
+        localStorage.getItem("_x_darkMode_on") === "true" &&
+            document.documentElement.classList.add("dark");
+    
+
+9
+
+
+
+10
+
+
+                                                function codingScrollToActiveTab() {
+                                                    const container = this.$refs.codingTabsContainer;
+                                                    const allTabButtons = [...container.querySelectorAll('[data-tab-button]')];
+                                                    const activeTabButton = container.querySelector('button.bg-primary');
+
+                                                    if (activeTabButton) {
+                                                        const index = allTabButtons.indexOf(activeTabButton);
+                                                        const offsetTop = allTabButtons.slice(0, index).reduce((total, el) => total + el.offsetHeight, 0);
+
+                                                        const scrollPos = offsetTop - (container.offsetHeight / 2) + (activeTabButton.offsetHeight / 2);
+
+                                                        container.scrollTo({
+                                                            top: scrollPos,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                }
+                                            
+
+11
+
+
+
+                                                            document.addEventListener("DOMContentLoaded", function() {
+
+                                                                
+
+                                                                let input1 = document.getElementById('input1'),
+                                                                    number1 = document.querySelectorAll('.numbers1 div'),
+                                                                    operator1 = document.querySelectorAll('.operators1 div'),
+                                                                    result1 = document.getElementById('result1'),
+                                                                    clear1 = document.getElementById('clear1'),
+                                                                    resultDisplayed1 = false;
+                                                        
+                                                                // adding click handlers to number buttons
+                                                                for (var i = 0; i < number1.length; i++) {
+                                                                    number1[i].addEventListener("click", function(e) {
+                                                                        var currentString = input1.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (resultDisplayed1 === false) {
+                                                                            input1.innerHTML += e.target.innerHTML;
+                                                                        } else if (resultDisplayed1 === true && (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷")) {
+                                                                            resultDisplayed1 = false;
+                                                                            input1.innerHTML += e.target.innerHTML;
+                                                                        } else {
+                                                                            resultDisplayed1 = false;
+                                                                            input1.innerHTML = "";
+                                                                            input1.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // adding click handlers to operator buttons
+                                                                for (var i = 0; i < operator1.length; i++) {
+                                                                    operator1[i].addEventListener("click", function(e) {
+                                                                        var currentString = input1.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
+                                                                            var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
+                                                                            input1.innerHTML = newString;
+                                                                        } else if (currentString.length == 0) {
+                                                                            console.log("Enter a number first");
+                                                                        } else {
+                                                                            input1.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // on click of 'equal' button
+                                                                result1.addEventListener("click", function() {
+                                                                    var inputString = input1.innerHTML;
+                                                                    var numbers = inputString.split(/\+|\-|\×|\÷/g);
+                                                                    var operators = inputString.replace(/[0-9]|\./g, "").split("");
+                                                        
+                                                                    var divide = operators.indexOf("÷");
+                                                                    while (divide != -1) {
+                                                                        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+                                                                        operators.splice(divide, 1);
+                                                                        divide = operators.indexOf("÷");
+                                                                    }
+                                                        
+                                                                    var multiply = operators.indexOf("×");
+                                                                    while (multiply != -1) {
+                                                                        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+                                                                        operators.splice(multiply, 1);
+                                                                        multiply = operators.indexOf("×");
+                                                                    }
+                                                        
+                                                                    var subtract = operators.indexOf("-");
+                                                                    while (subtract != -1) {
+                                                                        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
+                                                                        operators.splice(subtract, 1);
+                                                                        subtract = operators.indexOf("-");
+                                                                    }
+                                                        
+                                                                    var add = operators.indexOf("+");
+                                                                    while (add != -1) {
+                                                                        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+                                                                        operators.splice(add, 1);
+                                                                        add = operators.indexOf("+");
+                                                                    }
+                                                        
+                                                                    input1.innerHTML = numbers[0];
+                                                                    resultDisplayed1 = true;
+                                                                });
+                                                        
+                                                                // clearing the input on press of clear
+                                                                clear1.addEventListener("click", function() {
+                                                                    input1.innerHTML = "";
+                                                                });
+                                                            });
+                                                        
+
+12
+
+
+                                                function codingScrollToActiveTab() {
+                                                    const container = this.$refs.codingTabsContainer;
+                                                    const allTabButtons = [...container.querySelectorAll('[data-tab-button]')];
+                                                    const activeTabButton = container.querySelector('button.bg-primary');
+
+                                                    if (activeTabButton) {
+                                                        const index = allTabButtons.indexOf(activeTabButton);
+                                                        const offsetTop = allTabButtons.slice(0, index).reduce((total, el) => total + el.offsetHeight, 0);
+
+                                                        const scrollPos = offsetTop - (container.offsetHeight / 2) + (activeTabButton.offsetHeight / 2);
+
+                                                        container.scrollTo({
+                                                            top: scrollPos,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                }
+                                            
+
+13
+
+
+
+                                                            document.addEventListener("DOMContentLoaded", function() {
+
+                                                                
+
+                                                                let input2 = document.getElementById('input2'),
+                                                                    number2 = document.querySelectorAll('.numbers2 div'),
+                                                                    operator2 = document.querySelectorAll('.operators2 div'),
+                                                                    result2 = document.getElementById('result2'),
+                                                                    clear2 = document.getElementById('clear2'),
+                                                                    resultDisplayed2 = false;
+                                                        
+                                                                // adding click handlers to number buttons
+                                                                for (var i = 0; i < number2.length; i++) {
+                                                                    number2[i].addEventListener("click", function(e) {
+                                                                        var currentString = input2.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (resultDisplayed2 === false) {
+                                                                            input2.innerHTML += e.target.innerHTML;
+                                                                        } else if (resultDisplayed2 === true && (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷")) {
+                                                                            resultDisplayed2 = false;
+                                                                            input2.innerHTML += e.target.innerHTML;
+                                                                        } else {
+                                                                            resultDisplayed2 = false;
+                                                                            input2.innerHTML = "";
+                                                                            input2.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // adding click handlers to operator buttons
+                                                                for (var i = 0; i < operator2.length; i++) {
+                                                                    operator2[i].addEventListener("click", function(e) {
+                                                                        var currentString = input2.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
+                                                                            var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
+                                                                            input2.innerHTML = newString;
+                                                                        } else if (currentString.length == 0) {
+                                                                            console.log("Enter a number first");
+                                                                        } else {
+                                                                            input2.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // on click of 'equal' button
+                                                                result2.addEventListener("click", function() {
+                                                                    var inputString = input2.innerHTML;
+                                                                    var numbers = inputString.split(/\+|\-|\×|\÷/g);
+                                                                    var operators = inputString.replace(/[0-9]|\./g, "").split("");
+                                                        
+                                                                    var divide = operators.indexOf("÷");
+                                                                    while (divide != -1) {
+                                                                        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+                                                                        operators.splice(divide, 1);
+                                                                        divide = operators.indexOf("÷");
+                                                                    }
+                                                        
+                                                                    var multiply = operators.indexOf("×");
+                                                                    while (multiply != -1) {
+                                                                        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+                                                                        operators.splice(multiply, 1);
+                                                                        multiply = operators.indexOf("×");
+                                                                    }
+                                                        
+                                                                    var subtract = operators.indexOf("-");
+                                                                    while (subtract != -1) {
+                                                                        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
+                                                                        operators.splice(subtract, 1);
+                                                                        subtract = operators.indexOf("-");
+                                                                    }
+                                                        
+                                                                    var add = operators.indexOf("+");
+                                                                    while (add != -1) {
+                                                                        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+                                                                        operators.splice(add, 1);
+                                                                        add = operators.indexOf("+");
+                                                                    }
+                                                        
+                                                                    input2.innerHTML = numbers[0];
+                                                                    resultDisplayed2 = true;
+                                                                });
+                                                        
+                                                                // clearing the input on press of clear
+                                                                clear2.addEventListener("click", function() {
+                                                                    input2.innerHTML = "";
+                                                                });
+                                                            });
+                                                        
+
+14
+
+
+                                                function codingScrollToActiveTab() {
+                                                    const container = this.$refs.codingTabsContainer;
+                                                    const allTabButtons = [...container.querySelectorAll('[data-tab-button]')];
+                                                    const activeTabButton = container.querySelector('button.bg-primary');
+
+                                                    if (activeTabButton) {
+                                                        const index = allTabButtons.indexOf(activeTabButton);
+                                                        const offsetTop = allTabButtons.slice(0, index).reduce((total, el) => total + el.offsetHeight, 0);
+
+                                                        const scrollPos = offsetTop - (container.offsetHeight / 2) + (activeTabButton.offsetHeight / 2);
+
+                                                        container.scrollTo({
+                                                            top: scrollPos,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                }
+                                            
+
+15
+
+
+
+                                                            document.addEventListener("DOMContentLoaded", function() {
+
+                                                                
+
+                                                                let input3 = document.getElementById('input3'),
+                                                                    number3 = document.querySelectorAll('.numbers3 div'),
+                                                                    operator3 = document.querySelectorAll('.operators3 div'),
+                                                                    result3 = document.getElementById('result3'),
+                                                                    clear3 = document.getElementById('clear3'),
+                                                                    resultDisplayed3 = false;
+                                                        
+                                                                // adding click handlers to number buttons
+                                                                for (var i = 0; i < number3.length; i++) {
+                                                                    number3[i].addEventListener("click", function(e) {
+                                                                        var currentString = input3.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (resultDisplayed3 === false) {
+                                                                            input3.innerHTML += e.target.innerHTML;
+                                                                        } else if (resultDisplayed3 === true && (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷")) {
+                                                                            resultDisplayed3 = false;
+                                                                            input3.innerHTML += e.target.innerHTML;
+                                                                        } else {
+                                                                            resultDisplayed3 = false;
+                                                                            input3.innerHTML = "";
+                                                                            input3.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // adding click handlers to operator buttons
+                                                                for (var i = 0; i < operator3.length; i++) {
+                                                                    operator3[i].addEventListener("click", function(e) {
+                                                                        var currentString = input3.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
+                                                                            var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
+                                                                            input3.innerHTML = newString;
+                                                                        } else if (currentString.length == 0) {
+                                                                            console.log("Enter a number first");
+                                                                        } else {
+                                                                            input3.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // on click of 'equal' button
+                                                                result3.addEventListener("click", function() {
+                                                                    var inputString = input3.innerHTML;
+                                                                    var numbers = inputString.split(/\+|\-|\×|\÷/g);
+                                                                    var operators = inputString.replace(/[0-9]|\./g, "").split("");
+                                                        
+                                                                    var divide = operators.indexOf("÷");
+                                                                    while (divide != -1) {
+                                                                        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+                                                                        operators.splice(divide, 1);
+                                                                        divide = operators.indexOf("÷");
+                                                                    }
+                                                        
+                                                                    var multiply = operators.indexOf("×");
+                                                                    while (multiply != -1) {
+                                                                        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+                                                                        operators.splice(multiply, 1);
+                                                                        multiply = operators.indexOf("×");
+                                                                    }
+                                                        
+                                                                    var subtract = operators.indexOf("-");
+                                                                    while (subtract != -1) {
+                                                                        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
+                                                                        operators.splice(subtract, 1);
+                                                                        subtract = operators.indexOf("-");
+                                                                    }
+                                                        
+                                                                    var add = operators.indexOf("+");
+                                                                    while (add != -1) {
+                                                                        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+                                                                        operators.splice(add, 1);
+                                                                        add = operators.indexOf("+");
+                                                                    }
+                                                        
+                                                                    input3.innerHTML = numbers[0];
+                                                                    resultDisplayed3 = true;
+                                                                });
+                                                        
+                                                                // clearing the input on press of clear
+                                                                clear3.addEventListener("click", function() {
+                                                                    input3.innerHTML = "";
+                                                                });
+                                                            });
+                                                        
+
+16
+
+
+                                                function codingScrollToActiveTab() {
+                                                    const container = this.$refs.codingTabsContainer;
+                                                    const allTabButtons = [...container.querySelectorAll('[data-tab-button]')];
+                                                    const activeTabButton = container.querySelector('button.bg-primary');
+
+                                                    if (activeTabButton) {
+                                                        const index = allTabButtons.indexOf(activeTabButton);
+                                                        const offsetTop = allTabButtons.slice(0, index).reduce((total, el) => total + el.offsetHeight, 0);
+
+                                                        const scrollPos = offsetTop - (container.offsetHeight / 2) + (activeTabButton.offsetHeight / 2);
+
+                                                        container.scrollTo({
+                                                            top: scrollPos,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                }
+                                            
+
+17
+
+
+
+                                                            document.addEventListener("DOMContentLoaded", function() {
+
+                                                                
+
+                                                                let input4 = document.getElementById('input4'),
+                                                                    number4 = document.querySelectorAll('.numbers4 div'),
+                                                                    operator4 = document.querySelectorAll('.operators4 div'),
+                                                                    result4 = document.getElementById('result4'),
+                                                                    clear4 = document.getElementById('clear4'),
+                                                                    resultDisplayed4 = false;
+                                                        
+                                                                // adding click handlers to number buttons
+                                                                for (var i = 0; i < number4.length; i++) {
+                                                                    number4[i].addEventListener("click", function(e) {
+                                                                        var currentString = input4.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (resultDisplayed4 === false) {
+                                                                            input4.innerHTML += e.target.innerHTML;
+                                                                        } else if (resultDisplayed4 === true && (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷")) {
+                                                                            resultDisplayed4 = false;
+                                                                            input4.innerHTML += e.target.innerHTML;
+                                                                        } else {
+                                                                            resultDisplayed4 = false;
+                                                                            input4.innerHTML = "";
+                                                                            input4.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // adding click handlers to operator buttons
+                                                                for (var i = 0; i < operator4.length; i++) {
+                                                                    operator4[i].addEventListener("click", function(e) {
+                                                                        var currentString = input4.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
+                                                                            var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
+                                                                            input4.innerHTML = newString;
+                                                                        } else if (currentString.length == 0) {
+                                                                            console.log("Enter a number first");
+                                                                        } else {
+                                                                            input4.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // on click of 'equal' button
+                                                                result4.addEventListener("click", function() {
+                                                                    var inputString = input4.innerHTML;
+                                                                    var numbers = inputString.split(/\+|\-|\×|\÷/g);
+                                                                    var operators = inputString.replace(/[0-9]|\./g, "").split("");
+                                                        
+                                                                    var divide = operators.indexOf("÷");
+                                                                    while (divide != -1) {
+                                                                        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+                                                                        operators.splice(divide, 1);
+                                                                        divide = operators.indexOf("÷");
+                                                                    }
+                                                        
+                                                                    var multiply = operators.indexOf("×");
+                                                                    while (multiply != -1) {
+                                                                        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+                                                                        operators.splice(multiply, 1);
+                                                                        multiply = operators.indexOf("×");
+                                                                    }
+                                                        
+                                                                    var subtract = operators.indexOf("-");
+                                                                    while (subtract != -1) {
+                                                                        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
+                                                                        operators.splice(subtract, 1);
+                                                                        subtract = operators.indexOf("-");
+                                                                    }
+                                                        
+                                                                    var add = operators.indexOf("+");
+                                                                    while (add != -1) {
+                                                                        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+                                                                        operators.splice(add, 1);
+                                                                        add = operators.indexOf("+");
+                                                                    }
+                                                        
+                                                                    input4.innerHTML = numbers[0];
+                                                                    resultDisplayed4 = true;
+                                                                });
+                                                        
+                                                                // clearing the input on press of clear
+                                                                clear4.addEventListener("click", function() {
+                                                                    input4.innerHTML = "";
+                                                                });
+                                                            });
+                                                        
+
+18
+
+
+                                                function codingScrollToActiveTab() {
+                                                    const container = this.$refs.codingTabsContainer;
+                                                    const allTabButtons = [...container.querySelectorAll('[data-tab-button]')];
+                                                    const activeTabButton = container.querySelector('button.bg-primary');
+
+                                                    if (activeTabButton) {
+                                                        const index = allTabButtons.indexOf(activeTabButton);
+                                                        const offsetTop = allTabButtons.slice(0, index).reduce((total, el) => total + el.offsetHeight, 0);
+
+                                                        const scrollPos = offsetTop - (container.offsetHeight / 2) + (activeTabButton.offsetHeight / 2);
+
+                                                        container.scrollTo({
+                                                            top: scrollPos,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                }
+                                            
+
+19
+
+
+
+                                                            document.addEventListener("DOMContentLoaded", function() {
+
+                                                                
+
+                                                                let input5 = document.getElementById('input5'),
+                                                                    number5 = document.querySelectorAll('.numbers5 div'),
+                                                                    operator5 = document.querySelectorAll('.operators5 div'),
+                                                                    result5 = document.getElementById('result5'),
+                                                                    clear5 = document.getElementById('clear5'),
+                                                                    resultDisplayed5 = false;
+                                                        
+                                                                // adding click handlers to number buttons
+                                                                for (var i = 0; i < number5.length; i++) {
+                                                                    number5[i].addEventListener("click", function(e) {
+                                                                        var currentString = input5.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (resultDisplayed5 === false) {
+                                                                            input5.innerHTML += e.target.innerHTML;
+                                                                        } else if (resultDisplayed5 === true && (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷")) {
+                                                                            resultDisplayed5 = false;
+                                                                            input5.innerHTML += e.target.innerHTML;
+                                                                        } else {
+                                                                            resultDisplayed5 = false;
+                                                                            input5.innerHTML = "";
+                                                                            input5.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // adding click handlers to operator buttons
+                                                                for (var i = 0; i < operator5.length; i++) {
+                                                                    operator5[i].addEventListener("click", function(e) {
+                                                                        var currentString = input5.innerHTML;
+                                                                        var lastChar = currentString[currentString.length - 1];
+                                                        
+                                                                        if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
+                                                                            var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
+                                                                            input5.innerHTML = newString;
+                                                                        } else if (currentString.length == 0) {
+                                                                            console.log("Enter a number first");
+                                                                        } else {
+                                                                            input5.innerHTML += e.target.innerHTML;
+                                                                        }
+                                                                    });
+                                                                }
+                                                        
+                                                                // on click of 'equal' button
+                                                                result5.addEventListener("click", function() {
+                                                                    var inputString = input5.innerHTML;
+                                                                    var numbers = inputString.split(/\+|\-|\×|\÷/g);
+                                                                    var operators = inputString.replace(/[0-9]|\./g, "").split("");
+                                                        
+                                                                    var divide = operators.indexOf("÷");
+                                                                    while (divide != -1) {
+                                                                        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+                                                                        operators.splice(divide, 1);
+                                                                        divide = operators.indexOf("÷");
+                                                                    }
+                                                        
+                                                                    var multiply = operators.indexOf("×");
+                                                                    while (multiply != -1) {
+                                                                        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+                                                                        operators.splice(multiply, 1);
+                                                                        multiply = operators.indexOf("×");
+                                                                    }
+                                                        
+                                                                    var subtract = operators.indexOf("-");
+                                                                    while (subtract != -1) {
+                                                                        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
+                                                                        operators.splice(subtract, 1);
+                                                                        subtract = operators.indexOf("-");
+                                                                    }
+                                                        
+                                                                    var add = operators.indexOf("+");
+                                                                    while (add != -1) {
+                                                                        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+                                                                        operators.splice(add, 1);
+                                                                        add = operators.indexOf("+");
+                                                                    }
+                                                        
+                                                                    input5.innerHTML = numbers[0];
+                                                                    resultDisplayed5 = true;
+                                                                });
+                                                        
+                                                                // clearing the input on press of clear
+                                                                clear5.addEventListener("click", function() {
+                                                                    input5.innerHTML = "";
+                                                                });
+                                                            });
+                                                        
+
+20
+
+
+                            your_answers = [{"your_ans":"import java.util.*;\nclass Main{\n    public static void main(String [] args)\n    {\n        Scanner sc = new Scanner(System.in);\n        int totalEggs = sc.nextInt();\n        int yourEggs = sc.nextInt();\n        int friendEggs = sc.nextInt();\n        \n        if(totalEggs < 0 || yourEggs < 0 || friendEggs < 0){\n            System.out.println(\"Invalid input\");\n        }\n        else if(yourEggs + friendEggs == totalEggs){\n            System.out.println(\"Candy Time\");\n        }\n        else{\n            System.out.println(\"Keep Hunting\");\n        }\n    }\n}","q_id":"9820","aicount":null,"total_marks":"20"},{"your_ans":"import java.util.*;\nclass main{\n    public static void main(String [] args){\n        Scanner sc = new Scanner(System.in);\n        try\n        {\n            float v = sc.nextFloat();\n        \n        \n        if(v < 0){\n            System.out.println(\"Invalid input\");\n        }\n        else if(v<100.0){\n            System.out.println(\"Very Critical\");\n        }\n        else if(v<200.0){\n            System.out.println(\"Critical\");\n        }\n        else if(v<300.0){\n            System.out.println(\"Very Low\");\n        }\n        else if(v<500.0){\n            System.out.println(\"Low\");\n        }\n        else if(v<700.0){\n            System.out.println(\"Very Critical\");\n        }\n        else{\n            System.out.println(\"Invalid input\");\n        }\n        }\n        catch(Exception e)\n        {\n            System.out.println(\"Invalid input\");\n        }\n    }\n}","q_id":"9821","aicount":null,"total_marks":"11"},{"your_ans":"import java.util.*;\nclass main{\n    public static void main(String [] args){\n        Scanner sc = new Scanner(System.in);\n        int a = sc.nextInt();\n        \n        switch(a){\n            case 1:\n                System.out.println(\"Monday\");\n                break;\n            case 2:\n                System.out.println(\"Tuesday\");\n                break;\n            case 3:\n                System.out.println(\"Wednesday\");\n                break;\n            case 4:\n                System.out.println(\"Thursday\");\n                break;\n            case 5:\n                System.out.println(\"Friday\");\n                break;\n            case 6:\n                System.out.println(\"Saturday\");\n                break;\n            case 7:\n                System.out.println(\"Sunday\");\n                break;\n            default:\n                System.out.println(\"Invalid input\");\n                break;\n            \n            \n        }\n    }\n}","q_id":"9822","aicount":null,"total_marks":"20"},{"your_ans":"import java.util.*;\nclass main{\n    public static void main(String [] args){\n        Scanner sc = new Scanner(System.in);\n        float p = sc.nextFloat();\n        \n        if(p < 0){\n            System.out.println(\"Invalid input\");\n        }\n        else if((p<100) || (p>900 && p<=1000)){\n            System.out.println(\"Lagging\");\n        }\n        else if(p>100 && p>900){\n            System.out.println(\"Leading\");\n        }\n        else if(p == 100){\n            System.out.println(\"Unity\");\n        }\n        else{\n            System.out.println(\"Invalid input\");\n        }\n    }\n}","q_id":"9823","aicount":null,"total_marks":"12"},{"your_ans":"import java.util.*;\nclass main{\n    public static void main(String [] args){\n        Scanner sc = new Scanner(System.in);\n        int t = sc.nextInt();\n        \n        if(t < -100 || t > 100){\n            System.out.println(\"Invalid temperature\");\n        }\n        else if(t>=30){\n            System.out.println(\"Hot\");\n        }\n        else if(t>=20 && t<=29){\n            System.out.println(\"Moderate\");\n        }\n        else if(t<20){\n            System.out.println(\"Cold\");\n        }\n    }\n}","q_id":"9824","aicount":null,"total_marks":"20"}];
+                            currentAicoins = 25;
+                            pod_lid = false;
+                            port = null;
+                            test_id = 1279;
+                            topicname = "Statements";
+                            type = "1";
+                            proctoring = null;
+                            multiface = null;
+                            blockWhiteList = 1;
+                            timeLimit = null;
+                            l_id = 62;
+                            timer = 2002;
+                            ide_questions = [{"id":9820,"question":"<p>You go hunting for Easter eggs with a friend. You think that you have found all of the eggs, but you want to make sure that you don't leave any behind! Compare Easter baskets with your friend to decide if you should keep hunting.<\/p><p><br><\/p><p><strong>Input Format<\/strong><\/p><ul><li>An integer <strong class=\"ql-font-monospace\">totalEggs<\/strong> represents the total number of hidden eggs.<\/li><li>An integer <strong class=\"ql-font-monospace\">yourEggs<\/strong> represents the number of eggs in your basket.<\/li><li>An integer <strong class=\"ql-font-monospace\">friendEggs<\/strong> represents the number of eggs in your friend's basket.<\/li><\/ul><p><br><\/p><p><strong>Output Format<\/strong><\/p><ul><li>If the sum of <strong class=\"ql-font-monospace\">yourEggs<\/strong> and <strong class=\"ql-font-monospace\">friendEggs<\/strong> equals <strong class=\"ql-font-monospace\">totalEggs<\/strong>, print <strong class=\"ql-font-monospace\" style=\"font-size: 0.875rem;\">Candy Time<\/strong> Otherwise, print <strong class=\"ql-font-monospace\" style=\"font-size: 0.875rem;\">Keep Hunting<\/strong><\/li><li>If any of the input values are negative, print <strong class=\"ql-font-monospace\">Invalid input<\/strong><\/li><\/ul><p><br><\/p><p><strong>Constraints<\/strong><\/p><ul><li>-1000 \u2264 totalEggs, yourEggs, friendEggs \u2264 1000<\/li><\/ul>","course":"700","topic":"1706","subtopic":"2722","solution":"import java.util.Scanner;\n\npublic class EasterEggHunt {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n\n        \/\/ System.out.print(\"Enter the total number of eggs: \");\n        int totalEggs = scanner.nextInt();\n\n        \/\/ System.out.print(\"Enter the number of eggs in your basket: \");\n        int yourEggs = scanner.nextInt();\n\n        \/\/ System.out.print(\"Enter the number of eggs in your friend's basket: \");\n        int friendEggs = scanner.nextInt();\n\n        if (totalEggs < 0 || yourEggs < 0 || friendEggs < 0) {\n            System.out.println(\"Invalid input\");\n            scanner.close();\n            return;\n        }\n\n        if (totalEggs == yourEggs + friendEggs) {\n            System.out.println(\"Candy Time\");\n        } else {\n            System.out.println(\"Keep Hunting\");\n        }\n\n        scanner.close();\n    }\n}\n","title":"Easter Egg Hunting","white_list":null,"black_list":null,"in_1":"10\n5\n5\n","ex_1":"Candy Time\n","in_2":"100\n-30\n30\n","ex_2":"Invalid input\n","in_3":"1000\n1\n998\n","ex_3":"Keep Hunting\n","in_4":"20\n10\n10\n","ex_4":"Candy Time\n","in_5":"1000\n-1\n1000\n","ex_5":"Invalid input\n","in_6":"1000\n1\n998\n","ex_6":"Keep Hunting\n","type":1,"keytest":null,"keycriteria":null,"functiontest":null,"functioncriteria":null,"header":null,"footer":null,"compiled_lid":62,"your_ans":"import java.util.*;\nclass Main{\n    public static void main(String [] args)\n    {\n        Scanner sc = new Scanner(System.in);\n        int totalEggs = sc.nextInt();\n        int yourEggs = sc.nextInt();\n        int friendEggs = sc.nextInt();\n        \n        if(totalEggs < 0 || yourEggs < 0 || friendEggs < 0){\n            System.out.println(\"Invalid input\");\n        }\n        else if(yourEggs + friendEggs == totalEggs){\n            System.out.println(\"Candy Time\");\n        }\n        else{\n            System.out.println(\"Keep Hunting\");\n        }\n    }\n}","aicount":null},{"id":9821,"question":"<p>As an engineer monitor electrical system and assess voltage levels. Classify input voltages: Very Critical, Critical, Very Low, Low, Slightly Low, and Good.<\/p><p><br><\/p><p><strong>Input Format<\/strong><\/p><ul><li>The input consists of a single float representing the voltage level.<\/li><\/ul><p><br><\/p><p><strong>Output Format<\/strong><\/p><ul><li>Print <strong class=\"ql-font-monospace\">Good<\/strong>, If the voltage is between 500.0 and 700.0.<\/li><li>If the voltage is between 300.0 and 500.0, Print <strong class=\"ql-font-monospace\">Low<\/strong>. <\/li><li>Print <strong class=\"ql-font-monospace\">Very Low<\/strong>, If the voltage is between 200.0 and 300.0.<\/li><li>Print <strong class=\"ql-font-monospace\">Critical<\/strong>, If the voltage is below 200.0. Print <strong class=\"ql-font-monospace\">Very Critical<\/strong>, If the voltage is below 100.0. <\/li><li>Print <strong class=\"ql-font-monospace\">Invalid input<\/strong>, If the input is less than zero.<\/li><\/ul><p><br><\/p><p><strong>Constraints<\/strong><\/p><ul><li>-1000.0 \u2264 voltage \u2264 1000.0<\/li><\/ul>","course":"700","topic":"1706","subtopic":"2722","solution":"import java.util.Scanner;\n\npublic class VoltageStatus {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        double voltage = scanner.nextDouble();\n\n        if (voltage < 0) {\n            System.out.println(\"Invalid input\");\n        } else if (voltage < 100.0) {\n            System.out.println(\"Very Critical\");\n        } else if (voltage < 200.0) {\n            System.out.println(\"Critical\");\n        } else if (voltage < 300.0) {\n            System.out.println(\"Very Low\");\n        } else if (voltage < 400.0) { \/\/ Adjusted range for \"Slightly Low\"\n            System.out.println(\"Low\");\n        } else if (voltage <= 500.0) { \/\/ Adjusted range for \"Low\"\n            System.out.println(\"Slightly Low\");\n        } else if (voltage <= 700.0) { \/\/ Adjusted range for \"Good\"\n            System.out.println(\"Good\");\n        } else {\n            System.out.println(\"Invalid input\");\n        }\n    }\n}\n","title":"Determine Battery Health","white_list":null,"black_list":null,"in_1":"250.8\n","ex_1":"Very Low\n","in_2":"-30.0\n","ex_2":"Invalid input\n","in_3":"160\n","ex_3":"Critical\n","in_4":"511.8","ex_4":"Good\n","in_5":"13.5","ex_5":"Very Critical\n","in_6":"160\n","ex_6":"Critical\n","type":1,"keytest":null,"keycriteria":null,"functiontest":null,"functioncriteria":null,"header":null,"footer":null,"compiled_lid":62,"your_ans":"import java.util.*;\nclass main{\n    public static void main(String [] args){\n        Scanner sc = new Scanner(System.in);\n        try\n        {\n            float v = sc.nextFloat();\n        \n        \n        if(v < 0){\n            System.out.println(\"Invalid input\");\n        }\n        else if(v<100.0){\n            System.out.println(\"Very Critical\");\n        }\n        else if(v<200.0){\n            System.out.println(\"Critical\");\n        }\n        else if(v<300.0){\n            System.out.println(\"Very Low\");\n        }\n        else if(v<500.0){\n            System.out.println(\"Low\");\n        }\n        else if(v<700.0){\n            System.out.println(\"Very Critical\");\n        }\n        else{\n            System.out.println(\"Invalid input\");\n        }\n        }\n        catch(Exception e)\n        {\n            System.out.println(\"Invalid input\");\n        }\n    }\n}","aicount":null},{"id":9822,"question":"<p>You are given an integer <strong class=\"ql-font-monospace\">dayNumber<\/strong>, representing a day of the week (1 for Monday, 2 for Tuesday, ..., 7 for Sunday). Implement a function <strong class=\"ql-font-monospace\">getDayOfWeek<\/strong> to return the corresponding day name as a string.<\/p><p><br><\/p><p><strong>Input Format<\/strong><\/p><ul><li>A single integer <strong class=\"ql-font-monospace\">dayNumber<\/strong> represents a day of the week.<\/li><\/ul><p><br><\/p><p><strong>Output Format<\/strong><\/p><ul><li>A string representing the day of the week corresponding to dayNumber.<\/li><li><strong class=\"ql-font-monospace\">Invalid input, <\/strong>if dayNumber is not between 1 and 7.<\/li><\/ul><p><br><\/p><p><strong>Constraints<\/strong><\/p><ul><li>0 \u2264 day number \u2264 7<\/li><\/ul>","course":"700","topic":"1706","subtopic":"2722","solution":"import java.util.Scanner;\npublic class DayOfWeek {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int dayNumber = scanner.nextInt();\n        if (dayNumber < 1 || dayNumber > 7) {\n            System.out.println(\"Invalid input\");\n            return;\n        }\n        String dayOfWeek;\n        switch (dayNumber) {\n            case 1:\n                dayOfWeek = \"Monday\";\n                break;\n            case 2:\n                dayOfWeek = \"Tuesday\";\n                break;\n            case 3:\n                dayOfWeek = \"Wednesday\";\n                break;\n            case 4:\n                dayOfWeek = \"Thursday\";\n                break;\n            case 5:\n                dayOfWeek = \"Friday\";\n                break;\n            case 6:\n                dayOfWeek = \"Saturday\";\n                break;\n            case 7:\n                dayOfWeek = \"Sunday\";\n                break;\n            default:\n                dayOfWeek = \"Invalid input\";\n                break;\n        }\n        System.out.println(dayOfWeek);\n        scanner.close();\n    }\n}\n","title":"Day of the Week","white_list":null,"black_list":null,"in_1":"1","ex_1":"Monday\n","in_2":"0","ex_2":"Invalid input\n","in_3":"2","ex_3":"Tuesday\n","in_4":"7","ex_4":"Sunday\n","in_5":"6","ex_5":"Saturday\n","in_6":"2","ex_6":"Tuesday\n","type":1,"keytest":null,"keycriteria":null,"functiontest":null,"functioncriteria":null,"header":null,"footer":null,"compiled_lid":62,"your_ans":"import java.util.*;\nclass main{\n    public static void main(String [] args){\n        Scanner sc = new Scanner(System.in);\n        int a = sc.nextInt();\n        \n        switch(a){\n            case 1:\n                System.out.println(\"Monday\");\n                break;\n            case 2:\n                System.out.println(\"Tuesday\");\n                break;\n            case 3:\n                System.out.println(\"Wednesday\");\n                break;\n            case 4:\n                System.out.println(\"Thursday\");\n                break;\n            case 5:\n                System.out.println(\"Friday\");\n                break;\n            case 6:\n                System.out.println(\"Saturday\");\n                break;\n            case 7:\n                System.out.println(\"Sunday\");\n                break;\n            default:\n                System.out.println(\"Invalid input\");\n                break;\n            \n            \n        }\n    }\n}","aicount":null},{"id":9823,"question":"<p>Emma and Leo are electrical engineers analyzing power factors. Emma's reading is 85.5, indicating \"Lagging\", while Leo's 450.75 shows \"Leading\" to classify these power factors. <\/p><p><br><\/p><p><strong>Input Format<\/strong><\/p><ul><li>The input consists of a single float representing the power factor.<\/li><\/ul><p><br><\/p><p><strong>Output Format<\/strong><\/p><ul><li>Print <strong class=\"ql-font-monospace\">\"Lagging\"<\/strong> if the power factor is less than 100 or power factor is between 900 and 1000.<\/li><li>Print <strong class=\"ql-font-monospace\">\"Leading\"<\/strong> if the power factor is between 100 and 900, and \"Unity\" if it is exactly 100. <\/li><li>If the power factor is less than zero, print <strong class=\"ql-font-monospace\">\"Invalid input\"<\/strong>.<\/li><\/ul><p><br><\/p><p><strong>Constraints<\/strong><\/p><ul><li>-1000.0 \u2264 power factor \u2264 1000.0<\/li><\/ul>","course":"700","topic":"1706","subtopic":"2722","solution":"import java.util.Scanner;\n\npublic class PowerFactorClassification {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        \n        \/\/ Prompt and input handling removed for simplicity\n        String powerFactorInput = scanner.nextLine();\n        \n        \/\/ Validate input format\n        boolean isValidInput = isValidFloatInput(powerFactorInput);\n        \n        if (isValidInput) {\n            float powerFactor = Float.parseFloat(powerFactorInput);\n            \n            \/\/ Classification based on power factor value\n            if (powerFactor < 0) {\n                System.out.println(\"Invalid input\");\n            } else if (powerFactor < 100 || (powerFactor >= 900 && powerFactor <= 1000)) {\n                System.out.println(\"Lagging\");\n            } else if (powerFactor == 100) {\n                System.out.println(\"Unity\");\n            } else if (powerFactor >= 100 && powerFactor < 900) {\n                System.out.println(\"Leading\");\n            } else {\n                System.out.println(\"Invalid power factor\");\n            }\n        } else {\n            System.out.println(\"Invalid input\");\n        }\n        \n        scanner.close();\n    }\n    \n    \/\/ Function to validate float input without using exception handling\n    private static boolean isValidFloatInput(String input) {\n        \/\/ Check if the input can be parsed into a float\n        if (input == null || input.isEmpty()) {\n            return false;\n        }\n        \n        \/\/ Check each character to ensure it's a valid part of a float number\n        boolean hasDot = false; \/\/ Track if there's already a dot\n        \n        for (int i = 0; i < input.length(); i++) {\n            char c = input.charAt(i);\n            \n            if (c == '.') {\n                if (hasDot) {\n                    return false; \/\/ More than one dot\n                }\n                hasDot = true;\n            } else if (c < '0' || c > '9') {\n                return false; \/\/ Invalid character\n            }\n        }\n        \n        return true;\n    }\n}\n","title":"Power Factor Classification","white_list":null,"black_list":null,"in_1":"9.8\n","ex_1":"Lagging\n","in_2":"-950\n","ex_2":"Invalid input\n","in_3":"650.05\n","ex_3":"Leading\n","in_4":"90\n","ex_4":"Lagging\n","in_5":"100","ex_5":"Unity\n","in_6":"650.05\n","ex_6":"Leading\n","type":1,"keytest":null,"keycriteria":null,"functiontest":null,"functioncriteria":null,"header":null,"footer":null,"compiled_lid":62,"your_ans":"import java.util.*;\nclass main{\n    public static void main(String [] args){\n        Scanner sc = new Scanner(System.in);\n        float p = sc.nextFloat();\n        \n        if(p < 0){\n            System.out.println(\"Invalid input\");\n        }\n        else if((p<100) || (p>900 && p<=1000)){\n            System.out.println(\"Lagging\");\n        }\n        else if(p>100 && p>900){\n            System.out.println(\"Leading\");\n        }\n        else if(p == 100){\n            System.out.println(\"Unity\");\n        }\n        else{\n            System.out.println(\"Invalid input\");\n        }\n    }\n}","aicount":null},{"id":9824,"question":"<p>Given a temperature value, determine if it falls within a valid range and categorize it into one of three temperature ranges. The temperature is classified as <strong class=\"ql-font-monospace\">Hot<\/strong>, <strong class=\"ql-font-monospace\">Moderate<\/strong>, or <strong class=\"ql-font-monospace\">Cold<\/strong> based on its value.<\/p><p><br><\/p><p><strong>Input Format<\/strong><\/p><ul><li>An integer representing the temperature in degrees Celsius.<\/li><\/ul><p><br><\/p><p><strong>Output Format<\/strong><\/p><ul><li>Print <strong class=\"ql-font-monospace\">Hot<\/strong> if the temperature is 30 degrees Celsius or higher.<\/li><li>Print <strong class=\"ql-font-monospace\">Moderate<\/strong> if the temperature is between 20 and 29 degrees Celsius.<\/li><li>Print <strong class=\"ql-font-monospace\">Cold<\/strong> if the temperature is below 20 degrees Celsius.<\/li><li>Print <strong class=\"ql-font-monospace\">Invalid temperature<\/strong> if the temperature is outside the range of -100 to 100.<\/li><\/ul><p><br><\/p><p><strong>Constraints<\/strong><\/p><ul><li>\u2212150 \u2264 temperature \u2264 150<\/li><\/ul>","course":"700","topic":"1706","subtopic":"2722","solution":"import java.util.Scanner;\n\npublic class TemperatureCheck {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        \n        int temperature = scanner.nextInt();\n        \n        if (temperature < -100 || temperature > 100) {\n            System.out.println(\"Invalid temperature\");\n            scanner.close();\n            return;\n        }\n        \n        if (temperature >= 30) {\n            System.out.println(\"Hot\");\n        } else if (temperature >= 20 && temperature <= 29) {\n            System.out.println(\"Moderate\");\n        } else {\n            System.out.println(\"Cold\");\n        }\n        \n        scanner.close();\n    }\n}\n","title":"Temperature Categorization","white_list":null,"black_list":null,"in_1":"35\n","ex_1":"Hot\n","in_2":"150","ex_2":"Invalid temperature\n","in_3":"25","ex_3":"Moderate\n","in_4":"-30\n","ex_4":"Cold\n","in_5":"99","ex_5":"Hot\n","in_6":"25","ex_6":"Moderate\n","type":1,"keytest":null,"keycriteria":null,"functiontest":null,"functioncriteria":null,"header":null,"footer":null,"compiled_lid":62,"your_ans":"import java.util.*;\nclass main{\n    public static void main(String [] args){\n        Scanner sc = new Scanner(System.in);\n        int t = sc.nextInt();\n        \n        if(t < -100 || t > 100){\n            System.out.println(\"Invalid temperature\");\n        }\n        else if(t>=30){\n            System.out.println(\"Hot\");\n        }\n        else if(t>=20 && t<=29){\n            System.out.println(\"Moderate\");\n        }\n        else if(t<20){\n            System.out.println(\"Cold\");\n        }\n    }\n}","aicount":null}];
+                            mcq_questions = [];
+                            allocate_course_id = {"course_id":"700","c_batch":"skcet_java_smtech","duration":null,"enddate":"2024-11-20","l_id":62,"course_name":"23CY201 - Java Programming","coding_result":"SKCET_skcet_java_mtech_coding_results","mcq_result":"SKCET_skcet_java_mtech_mcq_results","test_data":"SKCET_skcet_java_mtech_test_data"}
+                            user_details = {"college_id":6,"student_active":1,"id":5141,"name":"ROHAN ","department":"20","batch":"7","section":"1","role":"2","image":null,"roll_no":"727723euci041","email":"727723euci041@skcet.ac.in","totalAicoins":25,"usedAicoins":0}
+                            topic = "1706"
+                            subtopic = "2722"
+
+                            // console.log("IDE Questions:",ide_questions);
+
+                            test_cases = [[{"input":"10\n5\n5\n","output":"Candy Time\n"},{"input":"100\n-30\n30\n","output":"Invalid input\n"},{"input":"1000\n1\n998\n","output":"Keep Hunting\n"},{"input":"20\n10\n10\n","output":"Candy Time\n"},{"input":"1000\n-1\n1000\n","output":"Invalid input\n"},{"input":"1000\n1\n998\n","output":"Keep Hunting\n"}],[{"input":"250.8\n","output":"Very Low\n"},{"input":"-30.0\n","output":"Invalid input\n"},{"input":"160\n","output":"Critical\n"},{"input":"511.8","output":"Good\n"},{"input":"13.5","output":"Very Critical\n"},{"input":"160\n","output":"Critical\n"}],[{"input":"1","output":"Monday\n"},{"input":"0","output":"Invalid input\n"},{"input":"2","output":"Tuesday\n"},{"input":"7","output":"Sunday\n"},{"input":"6","output":"Saturday\n"},{"input":"2","output":"Tuesday\n"}],[{"input":"9.8\n","output":"Lagging\n"},{"input":"-950\n","output":"Invalid input\n"},{"input":"650.05\n","output":"Leading\n"},{"input":"90\n","output":"Lagging\n"},{"input":"100","output":"Unity\n"},{"input":"650.05\n","output":"Leading\n"}],[{"input":"35\n","output":"Hot\n"},{"input":"150","output":"Invalid temperature\n"},{"input":"25","output":"Moderate\n"},{"input":"-30\n","output":"Cold\n"},{"input":"99","output":"Hot\n"},{"input":"25","output":"Moderate\n"}]];
+                            compilers = [{"id":1,"count":2,"api":"https:\/\/compiler2.amypo.com\/"},{"id":2,"count":1,"api":"https:\/\/code3.amypo.com\/"},{"id":7,"count":1,"api":"https:\/\/code4.amypo.com\/"},{"id":8,"count":1,"api":"https:\/\/code5.amypo.com\/"}];
+                            // console.log(your_answers);
+                            function delayedshowCode(data) {
+                                Livewire.dispatch('showCode', {counterId:data});
+                            }
+                            
+                            function showResult(id) {
+                                setTimeout(() => {
+                                    // console.log("results-" + id);
+                                    var resultElement = document.getElementById("results-" + id);
+                                    resultElement.style.display = "block";
+                                    resultElement.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start',
+                                    });
+                                }, 100);
+                            }
+                            
+
+                            function showCode(id) {
+                                var resultElement = document.getElementById("results-" + id);
+                                var topElement = document.getElementById(id); // Assume you have an element with this id at the top of your page
+                                topElement.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start',
+                                });
+                                isInView = false;
+                                setTimeout(() => {
+                                    resultElement.style.display = "none";
+                                }, 1000);
+                            }
+
+                            function goFullscreen() {
+                                let docEl = document.documentElement;
+
+                                if (docEl.requestFullscreen) {
+                                    docEl.requestFullscreen();
+                                } else if (docEl.mozRequestFullScreen) {
+                                    /* Firefox */
+                                    docEl.mozRequestFullScreen();
+                                } else if (docEl.webkitRequestFullscreen) {
+                                    /* Chrome, Safari and Opera */
+                                    docEl.webkitRequestFullscreen();
+                                } else if (docEl.msRequestFullscreen) {
+                                    /* IE/Edge */
+                                    docEl.msRequestFullscreen();
+                                }
+                            }
+
+
+                            function toggleTextarea(id) {
+                                var checkbox = document.getElementById(id + "-input-toggle");
+                                var textarea = document.getElementById(id + "-input");
+                                var resultElement = document.getElementById("results-" + id);
+                                var topElement = document.getElementById(id); // Assume you have an element with this id at the top of your page
+
+                                if (checkbox.checked) {
+                                    textarea.style.transition = "opacity 0.5s linear";
+                                    resultElement.style.transition = "opacity 0.5s linear";
+                                    setTimeout(() => {
+                                        textarea.style.display = "block";
+                                        textarea.style.visibility = "visible";
+                                        textarea.style.opacity = "1";
+                                        resultElement.style.visibility = "visible";
+                                        resultElement.style.opacity = "1";
+                                        resultElement.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'center',
+                                        });
+                                    }, 100);
+                                } else {
+                                    textarea.style.display = "none";
+                                    textarea.style.transition = "opacity 0.5s linear 0s";
+                                    textarea.style.opacity = "0";
+                                    textarea.style.visibility = "hidden";
+                                    topElement.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start',
+                                    });
+                                }
+                            }
+
+                            // document.addEventListener('copy', function(e) {
+                            //     e.preventDefault(); // Prevent the default copy behavior
+                            //     // Update the clipboard with the "could not copy" message
+                            //     e.clipboardData.setData('text/plain', 'Could not copy!');
+                            // });
+
+                            // // Add event listener for paste event
+                            // document.addEventListener('paste', function(e) {
+                            //     e.preventDefault(); // Prevent the default paste behavior
+                            //     // Clear the clipboard contents
+                            //     e.clipboardData.setData('text/plain', '');
+                            // });
+
+                            // Disable Right Click
+
+                            document.addEventListener('contextmenu', function(event) {
+                                event.preventDefault();
+                            });
+
+                            // Disable f12
+                            document.addEventListener('keydown', function(event) {
+                                if (event.keyCode == 123) {
+                                    event.preventDefault();
+                                }
+                            });
+                            // Preventing drag related events for the entire page
+                            [
+                                "dragstart", "drag", "dragend", "dragenter", "dragover",
+                                "dragleave", "drop"
+                            ].forEach(function(eventName) {
+                                document.addEventListener(eventName, function(e) {
+                                    e.stopPropagation();
+                                    e.preventDefault(); // This line is added to prevent the default behavior.
+                                }, true);
+                            });
+                            document.querySelectorAll('[draggable="true"]').forEach(function(el) {
+                                el.setAttribute('draggable', 'false');
+                            });
+                        
+
+21
+
+
+                            let quizsubmit;
+                            let quizsubmitLoader;
+                            let quizsubmitIcon;
+                            let quizsubmitSuccess;
+
+                            function saveSelectedValue(quizid, qid, encodedSolution,solutionarray) {
+                                quizsubmit = document.getElementById(quizid + '-submit');
+                                quizsubmitLoader = document.getElementById(quizid + '-submit-loader');
+                                quizsubmitIcon = document.getElementById(quizid + '-submit-icon');
+                                quizsubmitSuccess = document.getElementById(quizid + '-submit-success');
+
+                                quizsubmitLoader.style.display = 'block';
+                                quizsubmitIcon.style.display = 'none';
+
+                                const radios = document.getElementsByName(quizid);
+                                let your_ans;
+                                let score = 0;
+                                // console.log(atob(solution));
+                                for (let i = 0; i < radios.length; i++) {
+                                    if (radios[i].checked) {
+                                        quizOption = i+1;
+                                        your_ans = JSON.parse(radios[i].value);
+                                        console.log(your_ans);
+                                        let decodedSolution = JSON.parse(encodedSolution);
+                                        let payload;
+                                        if(solutionarray.question_type == 5){
+                                            if (quizOption == solutionarray.optioncheck) {
+                                                score = 2
+                                            }
+                                            payload = {
+                                            quizOption:quizOption,
+                                            results: quizOption,
+                                            q_id: qid,
+                                            score: score,
+                                            quiz_id: quizid,
+                                            timer:timeAllotted
+                                        }; 
+                                        }else{
+                                            if (your_ans.trim() == atob(decodedSolution).trim()) {
+                                                score = 2
+                                            }
+                                            payload = {
+                                                quizOption:quizOption,
+                                                results: your_ans,
+                                                q_id: qid,
+                                                score: score,
+                                                quiz_id: quizid,
+                                                timer:timeAllotted
+                                            };
+                                        }
+                                        Livewire.dispatch('quizResults', {payload:payload});
+                                        break;
+                                    }
+                                }
+                                if (!your_ans) {
+                                    document.getElementById(quizid + '-error').click();
+                                }
+                            }
+
+                            document.addEventListener('DOMContentLoaded', (event) => {
+                                
+                                Livewire.on('quizloadercomplete', function(e) {
+                                    setTimeout(() => {
+                                        quizsubmitLoader.style.display = 'none';
+                                        quizsubmitSuccess.style.display = 'block';
+                                        setTimeout(() => {
+                                            quizsubmitSuccess.style.display = 'none';
+                                            quizsubmitIcon.style.display = 'block';
+                                        }, 2000);
+                                    }, 2000);
+                                });
+                                
+                                // Livewire.on('vsevaluationresult', function (data) {
+                                //     console.log(data);
+                                //     // react.removeAttribute('disabled');
+                                // });
+                            });
+                        
+
+22
+
+
+                                function sequentialLoaderCheck(loaderData, index = 0) {
+                                    // Exit condition: if index is out of range
+                                    if (index >= loaderData.length) {
+                                        // All loaders finished, enable the button
+                                        document.getElementById('completeButton').disabled = false;
+                                        return;
+                                    }
+                    
+                                    // Current loader and checkmark
+                                    const current = loaderData[index];
+                    
+                                    // Show loader
+                                    document.getElementById(current.loaderId).classList.remove('hidden');
+                    
+                                    // After delay, hide loader and show checkmark, then proceed to the next
+                                    setTimeout(() => {
+                                        document.getElementById(current.loaderId).classList.add('hidden');
+                                        document.getElementById(current.checkmarkId).classList.remove('hidden');
+                                        sequentialLoaderCheck(loaderData, index + 1);
+                                    }, current.delay);
+                                }
+                                // Loader data
+                                const loaders = [{
+                                        loaderId: 'loader1',
+                                        checkmarkId: 'checkmark1',
+                                        delay: 3000
+                                    },
+                                    {
+                                        loaderId: 'loader2',
+                                        checkmarkId: 'checkmark2',
+                                        delay: 1500
+                                    },
+                                    {
+                                        loaderId: 'loader3',
+                                        checkmarkId: 'checkmark3',
+                                        delay: 500
+                                    },
+                                    {
+                                        loaderId: 'loader4',
+                                        checkmarkId: 'checkmark4',
+                                        delay: 3000 // Set delay as per your requirement
+                                    }
+                                ];
+                    
+                                // Start the sequence
+                                function loadreact(){
+                                    sequentialLoaderCheck(loaders);
+
+                                    Livewire.dispatch('containercreation');
+                                }
+                                function reacttest(){
+                                    Livewire.dispatch('reacttesting');
+                                }
+                            
+
+23
+
+
+            let useraccess=0;
+            function startconvertSecondsToTime(seconds) {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+
+                const hoursStr = hours < 10 ? '0' + hours : hours;
+                const minsStr = minutes < 10 ? '0' + minutes : minutes;
+                const secsStr = secs < 10 ? '0' + secs : secs;
+
+                return `${secsStr}`;
+            }
+
+            function convertSecondsToTime(seconds) {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+                const hoursStr = hours > 0 ? (hours < 10 ? '0' + hours : hours) + ' :' + (hours > 1 ? ' ' : ' ') : '00 : ';
+                const minsStr = minutes > 0 || hours > 0 ? (minutes < 10 ? '0' + minutes : minutes) + ' :' + (minutes > 1 ?
+                    ' ' : ' ') : '00 : ';
+                const secsStr = secs > 0 || (hours === 0 && minutes === 0) ? (secs % 60 < 10 ? '0' + secs % 60 : secs % 60) + (
+                    secs > 1 ? ' ' : ' ') : '00';
+                const timeStr = hoursStr + minsStr + secsStr;
+                return timeStr.trim();
+            }
+            let prevTime = 0;
+            var gameTimer;
+            var startTimer;
+            let timeAllotted ;
+            let startAllotted = 5;
+
+            function updateClock() {
+                // console.log("startclock:",timeLimit,timeAllotted,prevTime);
+                timeAllotted = prevTime;
+                if (timeLimit == null) {
+                    timeAllotted++;
+                    prevTime++;
+                } else {
+                    if (timeAllotted > 0) {
+                        timeAllotted--;
+                        prevTime--;
+
+                    } else {
+                        document.getElementById('triggerEnd').click()
+                        document.getElementById('closeEnd').style.display = 'none';
+                        document.getElementById('EndAuto').style.display = 'block';
+                        document.getElementById('reason').innerHTML =
+                            "Your test time has exceeded the limit.";
+                    }
+                }
+                document.getElementById('timer').innerHTML = convertSecondsToTime(timeAllotted);
+            }
+
+            function startClock() {
+                if (startAllotted !== 00) {
+                    startAllotted--;
+                }
+                document.getElementById('start-timer').innerHTML = startconvertSecondsToTime(startAllotted);
+                if (startAllotted === 00) {
+                    clearInterval(startTimer);
+                    Livewire.dispatch('getPortDetails');
+                    document.getElementById('return-test').style.display = 'block';
+                }
+            }
+
+            let idleTime = 0;
+
+            function resetIdleTime() {
+                idleTime = 0;
+            }
+
+            let startTime;
+            let endTime;
+            let duration;
+
+            function startTest() {
+                var testElement = document.getElementById("startTest");
+                testElement.style.transition = "all 2s"; // Change '2s' to the duration you want
+                testElement.style.display = "block";
+                testElement.style.opacity = 1;
+                goFullscreen();
+                startTimer = setInterval(startClock, 1000);
+                startTime = new Date().getTime()
+                // console.log(startTime);
+
+                // Proctoring events start here
+                window.addEventListener('blur', function() {
+                    checkAttempts();
+                });
+
+                window.addEventListener('visibilitychange', function() {
+                    if (document.hidden) {
+                        checkAttempts();
+                    }
+                });
+
+                window.addEventListener('fullscreenchange', function() {
+                    if (!document.fullscreenElement) {
+                        if (type == 3 && numAttempts != 'N/A') {
+                            document.getElementById('fullscreen').click();
+                        }
+                    }
+                });
+
+                document.addEventListener('mousemove', resetIdleTime);
+                document.addEventListener('keydown', resetIdleTime); // Considering keyboard actions for idle check
+                document.addEventListener('touchstart', resetIdleTime, {
+                    passive: true
+                }); // Considering touches for mobile
+
+                setInterval(function() {
+                    idleTime++;
+                    if (idleTime > 5) {
+                        if (type == 3 && numAttempts != 'N/A') {
+                            document.getElementById('idle').click();
+                        }
+                        checkAttempts()
+                    }
+                }, 60000);
+                // Proctoring events end here
+            }
+            function storeattempts(){
+                Livewire.dispatch('storeattempts');
+
+            }
+            function gameTimer() {
+                gameTimer = setInterval(updateClock, 1000);
+            }
+
+
+            window.addEventListener('beforeunload', function(e) {
+                console.log('test2:',useraccess);
+
+                if(useraccess==0){
+                    document.getElementById("userEnd").click();
+                    if(l_id != 1001){
+                        e.preventDefault();
+                    }
+                    Livewire.dispatch('saveTimer',{time:timeAllotted});
+                    e.returnValue = ''; // This is required for modern browsers
+                    return 'Changes that you made may not be saved.';
+            }
+            });
+            var port;
+            var container;
+            var trimmedContainer;
+            var previewPort;
+            var repo_name;
+            
+
+            function launchpreview() {
+                const previewLink = 'https://' + previewPort + '-' + trimmedContainer + '.vs.amypo.com';
+                console.log(previewLink);
+                window.open(previewLink, '_blank');
+            }
+
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // function startVideo() {
+                //     navigator.mediaDevices.getUserMedia({ video: true })
+                //         .then(function(stream) {
+                //             const video = document.getElementById('video');
+                //             video.srcObject = stream;
+                //             video.play();
+                //             document.getElementById('Camera').style.display = "none";
+                //             // document.getElementById('Camera1').style.display = "none";
+                //             // document.getElementById('Camera2').style.display = "none";
+                //         })
+                //         .catch(function(error) {
+                //             console.error('Error accessing the camera: ', error);
+                //             document.getElementById('Camera').style.display = "none";
+                //             // document.getElementById('Camera1').style.display = "none";
+                //             // document.getElementById('Camera2').style.display = "none";
+                //         });
+                // }
+            
+                // function captureVideoFrame(video, format = 'jpeg', quality = 0.92) {
+                //     var canvas = document.createElement("canvas");
+                //     canvas.width = video.videoWidth;
+                //     canvas.height = video.videoHeight;
+            
+                //     var ctx = canvas.getContext("2d");
+                //     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+                //     return canvas.toDataURL('image/' + format, quality);
+                // }
+            
+                // function captureAndSend() {
+                //     var video = document.getElementById('video');
+                //     var videoFrameDataUri = captureVideoFrame(video, 'png');
+            
+                //     html2canvas(document.body).then(canvas => {
+                //         var ctx = canvas.getContext('2d');
+                //         var img = new Image();
+                //         console.log("trigered",allocate_course_id,user_details,
+                //                 topic,subtopic);
+                //         img.onload = async function() {
+                //             ctx.drawImage(img, 0, 0); // Position based on your needs
+                //             const base64Image = canvas.toDataURL("image/png");
+                            
+                //             let protocol = window.location.protocol;
+                //             let host = window.location.host;
+                //             let url = protocol + '//' + host + '/api/upload-screenshot';
+                //             let payload = {
+                //                 screenshot: base64Image,
+                //                 allocate_course_id : allocate_course_id,
+                //                 user_details : user_details,
+                //                 topic : topic,
+                //                 subtopic : subtopic,
+                //             }
+                //             // console.log("Access Token",accessToken);
+                //             try {
+                //                 const response =await axios.post(url, payload);
+                //                 console.log('Screenshot sent successfully!', response.data);
+                //             }catch (error){
+                //                 console.error('Failed to send screenshot', error);
+                //             } 
+                //             // axios.post('/upload-screenshot', {
+                //             //     screenshot: base64Image,
+                //             //     allocate_course_id : allocate_course_id,
+                //             //     user_details : user_details,
+                //             //     topic : topic,
+                //             //     subtopic : subtopic,
+                //             // }).then(response => {
+                //             //     console.log('Screenshot sent successfully!', response.data);
+                //             // }).catch(error => {
+                //             //     console.error('Failed to send screenshot', error);
+                //             // });
+                //         };
+                //         img.src = videoFrameDataUri;
+                //     });
+                // }
+            
+                // if (type == 3 ) {
+                //     console.log("This is type three");
+                //     // Activate the camera
+                //     startVideo();
+                    
+                //     // // Set an interval to capture and send a screenshot every 2 minutes
+                //     setInterval(captureAndSend, 300000);  // Adjusted to 2 minutes
+
+                // }else{
+                //     console.log("This is not type three");
+                // }
+                const draggable = document.getElementById('draggable');
+
+                let offsetX, offsetY;
+
+                function onMouseDown(event) {
+                    offsetX = event.clientX - draggable.getBoundingClientRect().left;
+                    offsetY = event.clientY - draggable.getBoundingClientRect().top;
+
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                }
+
+                function onMouseMove(event) {
+                    const x = event.clientX - offsetX;
+                    const y = event.clientY - offsetY;
+
+                    draggable.style.left = `${Math.min(Math.max(x, 0), window.innerWidth - draggable.offsetWidth)}px`;
+                    draggable.style.top = `${Math.min(Math.max(y, 0), window.innerHeight - draggable.offsetHeight)}px`;
+                }
+
+                function onMouseUp() {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                }
+                if(draggable){
+                    draggable.addEventListener('mousedown', onMouseDown);
+                }
+                
+                Livewire.on('portDetails', function(data){
+
+                    port = data[0].port;
+                    container = data[0].container;
+                    trimmedContainer = data[0].trimmedContainer;
+                    previewPort = data[0].previewPort;
+                    repo_name = data[0].repoName;
+
+                    var previewFrame = document.getElementById('previewFrame1');
+                    var predivFrame = document.getElementById('predivFrame1');
+                    if(predivFrame){
+                        predivFrame.style.display = "block";
+                    }
+                    if(previewFrame){
+                        previewFrame.style.display = "none";
+                    }
+                    var dynamicUrl = 'https://' + data[0].trimmedContainer + '.vs.amypo.com/'; // Replace with your logic to get the URL
+                    // var dynamicUrl = 'http://localhost:' + data.port
+                    if(previewFrame){
+                        previewFrame.src = dynamicUrl;
+                            setTimeout(() => {
+                                predivFrame.style.display = "none";
+                                previewFrame.style.display = "block";
+                            }, 5000);
+                    }
+                });
+
+                setTimeout(() => {
+                    const options = {
+                        root: null,
+                        rootMargin: '0px',
+                        threshold: 0.5 // Changed the threshold to 0.5
+                    }
+                    let agree = document.getElementById('agreeButton');
+                    let checkAgree = document.getElementById('checkAgree');
+
+                    const observer = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                // console.log("The #end element is visible!"); // Debugging line
+                                checkAgree.style.display = 'none';
+                                agree.style.display = 'block';
+                            } else {
+                                // console.log(
+                                //     "The #end element is not visible!"); // Debugging line
+                                // agree.setAttribute("x-data", "{clickable: false}")
+                            }
+                        });
+                    }, options);
+
+                    let endElement = document.querySelector('#end');
+                    if (endElement) {
+                        observer.observe(endElement);
+                    } else {
+                        // console.log("The #end element cannot be found!"); // Debugging line
+                    }
+                });
+
+
+                timerData = timer;
+                if(timerData == null){
+                    if(timeLimit == null){
+                        timeAllotted = 0;
+                    }else{
+                        timeAllotted = timeLimit * 60;
+                    }
+                }else{
+                    timeAllotted = timerData;
+                }
+                console.log('timeAlloted:',timeAllotted,timerData);
+                prevTime = timerData;
+            }, 100);
+
+
+            // Add event listeners for visibilitychange, fullscreenchange, Alt + Tab and Cmd + Tab key combinations
+
+            let numAttempts = "N\/A";
+            userType = "student";
+
+            function AttemptReset() {
+                numAttempts = "N\/A";
+                tabswitch = 0;
+            }
+            let currentlyHandlingEvent = false;
+            let lastAlertedEvent = null;
+            let tabswitch = 0;
+
+            let lastChecked = 0; // A timestamp of the last check.
+
+            function checkAttempts() {
+                const now = Date.now();
+                const DEBOUNCE_THRESHOLD = 300; // 100 milliseconds. You can adjust this value.
+                if (numAttempts == "N/A" && now - lastChecked > DEBOUNCE_THRESHOLD) {
+                    if (type == 3 && numAttempts != 'N/A') {
+                        document.getElementById('blur').click();
+                    }
+                    lastChecked = now;
+                }
+                if (numAttempts > 0 && (!document.hasFocus() || !isFullScreen)) {
+                    if (now - lastChecked > DEBOUNCE_THRESHOLD) {
+                        if (type == 3 && numAttempts != 'N/A') {
+                            numAttempts--;
+                            tabswitch++;
+                        }
+                        if (type == 3 && numAttempts != 'N/A') {
+                            document.getElementById('blur').click();
+                        }
+                        const elements = document.querySelectorAll(".remaining");
+
+                        elements.forEach(element => {
+                            element.innerHTML = tabswitch;
+                        });
+
+                        if (numAttempts === 0) {
+                            // Add desired action when numAttempts reaches zero
+                            document.getElementById('triggerEnd').click()
+                            setTimeout(() => {
+                                document.getElementById('closeEnd').style.display = 'none';
+                                document.getElementById('EndAuto').style.display = 'block';
+                            }, 100);
+                            console.log(document.getElementById('closeEnd'));
+                            console.log(document.getElementById('EndAuto'));
+                            document.getElementById('reason').innerHTML =
+                                "We noticed tab switching, so your test was auto-closed. Some answers might not have been submitted.";
+                        }
+                        lastChecked = now;
+                    }
+                }
+            }
+
+            function endAuth() {
+                const keyElement = document.getElementById('endAuth');
+                const helperElement = document.getElementById('endHelper');
+                const TEST_KEY = "CONFIRM"; // replace with your actual test key value
+                keyElement.classList.remove(...keyElement.classList);
+                helperElement.classList.remove(...helperElement.classList);
+                helperElement.innerHTML = '';
+                keyElement.classList.add('form-input', 'w-40', 'h-10', 'text-center', 'rounded-full',
+                    'before:rounded-full', 'border-primary', 'border-2', 'bg-transparent', 'px-2', 'py-2',
+                    'placeholder:text-slate-400/70', 'placeholder:text-center', 'mt-2');
+
+                const key = keyElement.value;
+
+                if (key === TEST_KEY) {
+                    keyElement.classList.add('form-input', 'w-40', 'h-10', 'text-center', 'rounded-full',
+                        'before:rounded-full', 'border-success', 'border-2', 'bg-transparent', 'px-2', 'py-2',
+                        'placeholder:text-slate-400/70', 'placeholder:text-center', 'mt-2');
+                    helperElement.classList.add('text-tiny+', 'text-success', 'mt-1');
+                    helperElement.innerHTML = 'This code is valid';
+                    setTimeout(() => {
+                        window.close();
+                        window.history.back();
+                    }, 1000);
+                } else {
+                    keyElement.classList.add('animate-shake', 'form-input', 'w-40', 'h-10', 'text-center',
+                        'rounded-full',
+                        'before:rounded-full', 'border-error', 'border-2', 'bg-transparent', 'px-2', 'py-2',
+                        'placeholder:text-slate-400/70', 'placeholder:text-center', 'mt-2');
+                    helperElement.classList.add('animate-shake', 'text-tiny+', 'text-error', 'mt-1');
+                    helperElement.innerHTML = 'This code is invalid';
+                }
+
+            }
+
+            let isInternetAvailable = true;
+
+            function checkInternet() {
+                let img = new Image();
+                img.src = 'https://www.google.com/favicon.ico?d=' + Date.now();
+
+                img.onload = function() {
+                    // console.log('Image loaded successfully'); // Debugging line
+                    if (isInternetAvailable !== true) {
+                        isInternetAvailable = true;
+                        document.getElementById('hasInternet').click();
+                        document.getElementById('hasinternetNotification').click();
+                    }
+                }
+
+                img.onerror = function() {
+                    // console.log('Error loading image'); // Debugging line
+                    if (isInternetAvailable !== false) {
+                        isInternetAvailable = false;
+                        document.getElementById('nointernetNotification').click();
+                        document.getElementById('noInternet').click();
+                    }
+                }
+            }
+
+            // Check the internet connection every 10 seconds
+            setInterval(checkInternet, 10000);
+
+            function clearClipboard() {
+                navigator.clipboard.writeText('');
+            }
+
+            function reportQuizIssue(id, qid) {
+                let payload = {
+                    q_id: qid,
+                    issue: document.getElementById('quiz' + id + '-issue').value
+                };
+                Livewire.dispatch('quizIssue', {payload:JSON.stringify(payload)});
+            }
+
+            function reportCodingIssue(id, qid) {
+                let payload = {
+                    q_id: qid,
+                    issue: document.getElementById('coding' + id + '-issue').value
+                };
+                Livewire.dispatch('codingIssue', {payload:JSON.stringify(payload)});
+            }
+        
+            document.addEventListener("DOMContentLoaded", function() {
+                Livewire.dispatch('gettimer');
+                Livewire.on('react_saved', (savedata) => {
+                    console.log("enteres to save notify",savedata)
+
+                    if(savedata == 1){
+                        document.getElementById('reactsaved').click();
+                    }else{
+                        document.getElementById('reactnotsaved').click();
+                    }
+                });
+                
+                
+                Livewire.on('setUseraccess', () => {
+                    // console.log("enteres to save notify");
+                    useraccess=1;
+                    console.log('test1:',useraccess);
+                    setTimeout(() => {
+                        Livewire.dispatch('reroute');
+                    }, 1000);                
+                });
+
+                Livewire.on('makeApiCall', (questiondata) => {
+                    const question = questiondata[0];
+                    // alert(question);
+                    // var button = document.getElementById('activebutton');
+                    //         button.innerText = 'Searching...'; // Change the button text to 'Searching...'
+
+                            // button.disabled = true;
+                    axios.post('https://api.openai.com/v1/chat/completions', {
+                        model: 'gpt-4o-mini',
+                        messages: [{ 'role': 'system', 'content': 'You are a helpful assistant.' }, { 'role': 'user', 'content': question }],
+                    }, {
+                        headers: {
+                            'Authorization': 'Bearer ' + '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',
+                            'Content-Type': 'application/json',
+                        }
+                    })
+                    .then(response => {
+                        Livewire.dispatch('processApiResponse', {apiResponse:response.data});
+                        console.log(response.data);
+                        console.log('amypo');
+
+                    })
+                    .catch(error => {
+                        console.error('API call error:', error);
+                        Livewire.dispatch('errorairesponse', {api:error.message});
+
+                        // Livewire.dispatch('handleApiError', error.message);
+                    });
+                });
+                Livewire.on('makeApiCallforerror', (questiondata) => {
+                    console.log('event',questiondata[0]);
+                    const question = questiondata[0];
+                    // alert(question);
+                    // var button = document.getElementById('activebutton');
+                    //         button.innerText = 'Searching...'; // Change the button text to 'Searching...'
+
+                            // button.disabled = true;
+                    axios.post('https://api.openai.com/v1/chat/completions', {
+                        model: 'gpt-4o-mini',
+                        messages: [{ 'role': 'system', 'content': 'You are a helpful assistant.' }, { 'role': 'user', 'content': question }],
+                    }, {
+                        headers: {
+                            'Authorization': 'Bearer ' + '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',
+                            'Content-Type': 'application/json',
+                        }
+                    })
+                    .then(response => {
+                        Livewire.dispatch('processApiResponseforerror', {apiResponse:response.data});
+                        console.log(response.data);
+                        console.log('amypo');
+
+                    })
+                    .catch(error => {
+                        Livewire.dispatch('errorairesponse', {api:error.message});
+                        console.error('API call error:', error);
+                        // Livewire.dispatch('handleApiError', error.message);
+                    });
+                });
+                Livewire.on('makeApiCallforoptimizedcode', (questiondata) => {
+                    console.log('event',questiondata[0]);
+                    const question = questiondata[0];
+                    // alert(question);
+                    // var button = document.getElementById('activebutton');
+                    //         button.innerText = 'Searching...'; // Change the button text to 'Searching...'
+
+                            // button.disabled = true;
+                    axios.post('https://api.openai.com/v1/chat/completions', {
+                        model: 'gpt-4o-mini',
+                        messages: [{ 'role': 'system', 'content': 'You are a helpful assistant.' }, { 'role': 'user', 'content': question }],
+                    }, {
+                        headers: {
+                            'Authorization': 'Bearer ' + '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',
+                            'Content-Type': 'application/json',
+                        }
+                    })
+                    .then(response => {
+                        Livewire.dispatch('processApiResponseforoptimizer', {apiResponse:response.data});
+                        console.log(response.data);
+                        console.log('amypo');
+
+                    })
+                    .catch(error => {
+                        Livewire.dispatch('processApierrorResponseforoptimizer', {api:error.message});
+                        console.error('API call error:', error);
+                        // Livewire.dispatch('handleApiError', error.message);
+                    });
+                });
+            });
+        
+
+24
+
+
+            document.addEventListener('DOMContentLoaded', (e) => {
+                Echo.channel('reverb-channel').listen('Reverbevent', (e) => {
+                    console.log('Page 2 received event:', e);
+                    const userId = document.querySelector('meta[name="user-id"]').getAttribute('content');
+                    console.log('Authenticated User ID:', userId);
+                
+                    const data = {
+                        userId: userId,
+                    };
+                    setTimeout(() => {
+                        fetch('/api/testpage_check', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Include CSRF token for Laravel
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Success:', data);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                        // Additional event handling code for Page 2
+                        }, 2000); // 1 second delay
+                        // Additional event handling code for Page 2
+                });        
+                Echo.channel('testingevent').listen('Activecheck', (e) => {
+                    console.log('Page 2 received event:', e);
+                    const userId = document.querySelector('meta[name="user-id"]').getAttribute('content');
+                    console.log('Authenticated User ID:', userId);
+
+                    const data = {
+                        userId: userId,
+                    };
+                    setTimeout(() => {
+                            fetch('/api/testpage_check', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Include CSRF token for Laravel
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Success:', data);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                            // Additional event handling code for Page 2
+                        }, 2000); // 1 second delay
+                        // Additional event handling code for Page 2
+                }); 
+                Echo.channel('Allusers').listen('ActivecheckALL', () => {
+                    console.log('Page 2 received event:', e);
+                    const userId = document.querySelector('meta[name="user-id"]').getAttribute('content');
+                    console.log('Authenticated User ID:', userId);
+
+                        const data = {
+                            userId: userId,
+                        };
+                        setTimeout(() => {
+                            fetch('/api/testpage_check', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Include CSRF token for Laravel
+                                },
+                                body: JSON.stringify(data)
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Success:', data);
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
+                            // Additional event handling code for Page 2
+                            }, 2000); // 1 second delay
+                            // Additional event handling code for Page 2
+                }); 
+            });
+        
+
+25
+
+window.livewireScriptConfig = {"csrf":"6tYaVTrw6SYXkYSTqklZ8HZ0zAqIjbWJlDFiXx4i","uri":"\/livewire\/update","progressBar":"","nonce":""};
+
+26
+
+
+                                function sequentialLoaderCheck(loaderData, index = 0) {
+                                    // Exit condition: if index is out of range
+                                    if (index >= loaderData.length) {
+                                        // All loaders finished, enable the button
+                                        document.getElementById('completeButton').disabled = false;
+                                        return;
+                                    }
+                    
+                                    // Current loader and checkmark
+                                    const current = loaderData[index];
+                    
+                                    // Show loader
+                                    document.getElementById(current.loaderId).classList.remove('hidden');
+                    
+                                    // After delay, hide loader and show checkmark, then proceed to the next
+                                    setTimeout(() => {
+                                        document.getElementById(current.loaderId).classList.add('hidden');
+                                        document.getElementById(current.checkmarkId).classList.remove('hidden');
+                                        sequentialLoaderCheck(loaderData, index + 1);
+                                    }, current.delay);
+                                }
+                                // Loader data
+                                const loaders = [{
+                                        loaderId: 'loader1',
+                                        checkmarkId: 'checkmark1',
+                                        delay: 3000
+                                    },
+                                    {
+                                        loaderId: 'loader2',
+                                        checkmarkId: 'checkmark2',
+                                        delay: 1500
+                                    },
+                                    {
+                                        loaderId: 'loader3',
+                                        checkmarkId: 'checkmark3',
+                                        delay: 500
+                                    },
+                                    {
+                                        loaderId: 'loader4',
+                                        checkmarkId: 'checkmark4',
+                                        delay: 3000 // Set delay as per your requirement
+                                    }
+                                ];
+                    
+                                // Start the sequence
+                                function loadreact(){
+                                    sequentialLoaderCheck(loaders);
+
+                                    Livewire.dispatch('containercreation');
+                                }
+                                function reacttest(){
+                                    Livewire.dispatch('reacttesting');
+                                }
+                            
+
+27
+
+
+    var status = 'online';
+    var current_status = 'online';
+
+    function check_internet_connection() {
+        if (navigator.onLine) {
+            status = 'online';
+        } else {
+            status = 'offline';
+        }
+
+        if (current_status != status) {
+            if (status == 'online') {
+                const checkConnection = document.getElementById('networkConnectionCheck');
+                checkConnection.style.display = "none";
+            } else {
+                const checkConnection = document.getElementById('networkConnectionCheck');
+                checkConnection.style.display = "block";
+            }
+            current_status = status;
+        }
+    }
+
+    check_internet_connection();
+
+    setInterval(function() {
+        check_internet_connection();
+    }, 1000);
+
+
+28
+
+
+    window.addEventListener("DOMContentLoaded", () => Livewire.start());
+
+
+29
+
+
+    // Function to get a cookie by name
+    function getCookie(name) {
+        let cookieArr = document.cookie.split(";");
+        for (let i = 0; i < cookieArr.length; i++) {
+            let cookiePair = cookieArr[i].split("=");
+            if (name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + date.toUTCString() + ";path=/";
+    }
+
+
+30
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        let enterTime = Date.now();
+        let timer = 0;
+
+        // Function to calculate the time spent on the page
+        function calculateTimeSpent() {
+            let leaveTime = Date.now();
+            timer = leaveTime - enterTime; // Time spent in milliseconds
+            return timer;
+        }
+
+        // Reset the timer on page refresh, tab switch, or any movement
+        function resetTimer() {
+            enterTime = Date.now();
+            timer = 0;
+        }
+
+        // Reset timer on page refresh
+        window.addEventListener('beforeunload', resetTimer);
+
+        // Reset timer on tab switch
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                resetTimer();
+            }
+        });
+
+        // Reset timer on mouse movement
+        document.addEventListener('mousemove', resetTimer);
+
+        // Make the timer available globally
+        window.getTimer = function() {
+            return calculateTimeSpent();
+        }
+    });
+
+
+31
+
+
+    // Function to show banner
+    function showBanner() {
+        const banner = document.getElementById('cookieConsentBanner');
+        banner.style.transform = 'translateX(0)';
+        banner.style.opacity = '1';
+    }
+
+    // Function to hide banner
+    function hideBanner() {
+        const banner = document.getElementById('cookieConsentBanner');
+        banner.style.transform = 'translateX(100%)';
+        banner.style.opacity = '0';
+    }
+
+    // Check if user has already accepted cookies
+    if (!localStorage.getItem('cookiesAccepted')) {
+        // If not, show the cookie consent banner
+        showBanner();
+    } else {
+        // If yes, hide the cookie consent banner
+        hideBanner();
+    }
+
+    // Add event listener to "Accept" button
+    document.getElementById('acceptCookiesButton').addEventListener('click', function() {
+        // Save to local storage
+        localStorage.setItem('cookiesAccepted', 'true');
+
+        // Hide the cookie consent banner
+        hideBanner();
+    });
+
+
+32
+
+
+
+33
+
+
+        let timeoutDuration = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+        let timeoutID;
+
+        function sessionTimer() {
+            // Reset the timer on user activity
+            clearTimeout(timeoutID);
+            timeoutID = setTimeout(handleTimeout, timeoutDuration);
+        }
+
+        function handleTimeout() {
+            alert('Session timed out.');
+            window.close();
+            // Implement your session timeout handling here.
+        }
+
+        // Listen for user activity to reset the timer
+        window.addEventListener('mousemove', sessionTimer());
+        window.addEventListener('keydown', sessionTimer());
+
+        // Start the timer initially
+        sessionTimer();
+    
+
