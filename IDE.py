@@ -15,12 +15,10 @@ print('---------------------------------------------------------------\n')
 print('get the test url before entering the credentials!\n')
 print('---------------------------------------------------------------\n')
 
-# userId = input("Enter your mailId: ")
-userId = '727723euci035@skcet.ac.in'
-# password = input("Enter your password: ")
-password = 'skcet@2024'
+userId = input("Enter your mailId: ")
+password = input("Enter your password: ")
 
-testUrl = 'https://skcet.amypo.com/testpage?course=eyJpdiI6IlFVLysxaTRUWDNpTHIvQzZvbFh1L2c9PSIsInZhbHVlIjoiNTgzaHlpY3BvSDg2b0grS3Z1OS9MUT09IiwibWFjIjoiOWI2OTY0ZjM2ZGQyMmQyM2I4MjFlOTYwOWFkYWYxMzkwMDc0ZmZhYWNjNDZkYjFhNWQwMzIyNjVkN2QyODdhMCIsInRhZyI6IiJ9&topic=eyJpdiI6InNxVE9uem9tVVlCdGhBRnhDcjJqU2c9PSIsInZhbHVlIjoiNmJEcU9SMmFzbUJZRUU2RTZpQUZYZz09IiwibWFjIjoiMzU2Y2RmOTI4ZGYyZTFmZmMyYzFhZDAzMDc5ZDliYmQyMzlhNDAxNzk5OTRlMTE4NTI2MzUzMzc0YTNkYmU2YiIsInRhZyI6IiJ9&subtopic=eyJpdiI6IkpGcUd6QUZYZGFjbDE1MnY2WS94VWc9PSIsInZhbHVlIjoiWW9VSzcwSmhkVm1PYjNJc2s5NG56Zz09IiwibWFjIjoiNDYyMDFmOWM3ZTMxZWY0N2ZhOTJiYjlhMzQ0NGU5ODNhNmY1MjllOTZhMjJmNWI5NTZiY2Q4YTllYmNjMWJmZCIsInRhZyI6IiJ9&type=eyJpdiI6IjRuUnI1ZVpSUU9iL0VYaVlTZkZaeUE9PSIsInZhbHVlIjoicUFVME1tZzdCRUdPaStaNVZPSTlsZz09IiwibWFjIjoiZTU5MDQxZGE5NDg2ZTcxYWU5ZTJjYWU4OGU0MDA4MjRkMjM2Mjk1N2Y4YTFkMTJkMTVjMWZiM2Y2OTZhMTIyOCIsInRhZyI6IiJ9&mode=eyJpdiI6IndjRTZKdkxVRkMxV0Z5RXh1Tjh5Ymc9PSIsInZhbHVlIjoiaHBDV2c4VXcxY2FPcjU0V0JMdUNaUT09IiwibWFjIjoiOGQzMzI0OTA5OGVjYzBjMzhmODQwYWM2NDY4NzAyYTU0MTFhN2Q2OTIwODQ2MDcyMWQxYWQ2NzI4NTMzNjE5ZCIsInRhZyI6IiJ9'
+testUrl = input("test url??")
 
 chrome_path = 'utils/chromedriver.exe'
 options = Options()
