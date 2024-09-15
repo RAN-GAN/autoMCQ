@@ -14,9 +14,8 @@ print('---------------------------------------------------------------\n')
 
 
 userId = input("Enter your mailId: ")
-# userId = '727723euci047@skcet.ac.in'
 password = input("Enter your password: ")
-# password = 'Shamyuktha@20'
+
 
 
 chrome_path = 'utils/chromedriver.exe'
